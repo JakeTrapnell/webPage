@@ -1,0 +1,65 @@
+html
+{
+    background-color: purple;
+    height: 100%;
+    margin: 0;
+}
+
+h1
+{
+    text-align: center;
+}
+
+ul
+{
+    list-style-type: none;
+    margin: 10;
+    padding: 10;
+    background-color: purple;
+}
+
+li
+{
+    display: inline;
+}
+
+li a
+{
+    color: white;
+    text-align: center;
+    padding: 10;
+    text-decoration: none;
+}
+
+body
+{
+    background-color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer
+{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.wrapper
+{
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
+.footer,
+.push
+{
+    height: 50px;
+}
+
+body,
+#ducky
+{
+    text-align: centre;
+}

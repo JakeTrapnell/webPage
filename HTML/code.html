@@ -1,0 +1,212 @@
+<html>
+    <body>
+        <script>
+
+        let sentance1 = "He said";
+        let sentance2 = "my name is matt"
+        let upperSentance1 = sentance1.toUpperCase();
+        let upperSentance2 = sentance2.toUpperCase();
+        let num1 = 3;
+        let pokemon = ["Pikachu", "Evee", "Mew"];
+        let publicParaID = 0;
+
+        function squareOfNumber(a) {
+            return a**2;
+            console.log(a**2);
+        }
+
+        function addThreeNumbers(a, b, c){
+            return a+b+c;
+            console.log("button clicked!");
+
+        }
+
+        let personObject={
+
+            name: "Katie",
+            age: 21,
+            occupation: "recruitment"
+
+        }
+
+        function changePerson(){
+            personObject.age = 26;
+            personObject.name = "Jake";
+            personObject.occupation = "software developer";
+        }
+
+        function increaseAge(){
+            personObject.age = personObject.age +1;
+            console.log(personObject.age);
+        }
+
+        function addToArray(array, pokemon){
+            array[Array.length+2] = pokemon;
+        }
+
+        function isMiddleAged(person){
+            if(person.age>19 && person.age<41)
+            return true;
+            else
+            return false;
+        }
+
+        function loopy(maxLoop){
+            for(i = 1; i<maxLoop+1; i++){
+                if(i % 2 === 0)
+                console.log(i);
+            }
+        }
+
+        function fizzBuzz(maxLoop, fizz, buzz){
+            for(i = 1; i<maxLoop+1; i++)
+            {
+                if(i % 3 === 0 && i % 5 === 0)
+                console.log(i +  fizz + buzz);
+                else if(i % 3 === 0)
+                console.log(i + fizz);
+                else if(i % 5 === 0)
+                console.log(i + buzz);
+            }
+        }
+
+        function forceThree(num){
+            while(num > 1){
+                if(num % 3 === 0){
+                    num = num / 3;
+                    console.log(num);
+                }
+                else if((num + 1) % 3 === 0){
+                    num = (num + 1) / 3;
+                    console.log(num);
+                }
+                else if((num - 1) % 3 === 0){
+                    num = (num - 1) / 3;
+                    console.log(num);
+                }
+            }    
+        }
+
+        function triple(letters){
+            let numOftrips = 0;
+         
+            for(i = 0; i < letters.length; i++){
+                if(letters[i] == letters[i + 1] && letters[i] == letters[i + 2])
+                numOftrips = numOftrips + 1;
+            }
+            console.log("number of triples: "+numOftrips);
+        }
+
+        function createPara(words){
+            let privateParaID = publicParaID + 1;
+            let para = document.createElement("P");
+            para.setAttribute("id", privateParaID);
+            let text = document.createTextNode(words);
+            para.appendChild(text);
+            document.body.appendChild(para);
+            publicParaID = privateParaID;
+
+        }
+
+       
+
+
+        function deletePara(words){
+            document.getElementById(publicParaID).remove();
+            publicParaID = publicParaID - 1;
+        }
+
+        function readObject(url){
+            let requestUrl = url;
+            let request = new XMLHttpRequest();
+            request.open('GET', requestUrl);
+            request.responseType = 'json';
+            request.send();
+
+            request.onload = function(){
+                let heroes = request.response;
+                let heroJSON = JSON.stringify(heroes);
+                let heroOBJ = JSON.parse(heroJSON);
+                //console.log(heroOBJ.members[0]);
+                createPara(JSON.stringify(heroOBJ.members[0]));
+            }
+        }
+
+        function searchKingsNameObject(url, name){
+            let requestUrl = url;
+            let request = new XMLHttpRequest();
+            request.open('GET', requestUrl);
+            request.responseType = 'json';
+            request.send();
+
+            request.onload = function(){
+                let kings = request.response;
+                let kingsJSON = JSON.stringify(kings);
+                let kingsOBJ = JSON.parse(kingsJSON);
+                let searchedKings = kings.filter(itDoesntMatter => itDoesntMatter.nm === name);                
+                //createPara(JSON.stringify(kingsOBJ[0].nm));
+                createPara(JSON.stringify(searchedKings[0]));
+            }
+        }
+        
+        
+
+            console.log(squareOfNumber(8));
+            console.log(addThreeNumbers(1,2,3));
+            console.log(personObject);
+            changePerson();
+            console.log(personObject);
+            console.log(sentance1+" "+sentance2);
+            console.log(upperSentance1+" "+upperSentance2);
+            console.log(sentance1+" ".concat(num1))
+            console.log(pokemon);
+
+            pokemon.push("Charmander");
+            pokemon.push("Ivysaur");
+            console.log(pokemon);
+
+            pokemon.pop();
+            console.log(pokemon);
+
+            console.log(isMiddleAged(personObject));
+
+            loopy(10);
+
+            fizzBuzz(87, " ding", " dong")
+
+            forceThree(63271);
+
+            triple("xxxxyyywhat?thatscrazzzy");
+
+            //readObject("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json");
+
+        </script>
+
+        <div id="buttons">
+            <button id="methodButton" type="button" value="onclick" onclick= console.log(addThreeNumbers(2,4,6))>Click Me!</button>
+            <button id="ageButton" type="button" value="onclick" onclick= console.log(increaseAge())>Increase Age</button>
+        </div>
+        <div id="text box">
+            <form>
+                <br>
+                Enter Text:<br>
+                <input id="inputBox" type="text" words="words"/><br>
+                <input type="button" value="Create" onclick= "createPara(document.getElementById('inputBox').value);"/>
+                <input type="button" value="Delete" onclick= "deletePara();"/> 
+            </form>
+        </div>
+        <div>
+            <input type="Button" value="Create hero" onclick= " readObject('https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json');"/>
+        </div>
+        <div>
+            <form>
+                </br>
+                </br>
+                Search for king:<br>
+                <input id ="kingsearch" type="text" name="name"/><br>
+                <input type="Button" value="find king" onclick= " searchKingsNameObject('https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json', document.getElementById('kingsearch').value);"/>
+            </form>
+        </div>
+
+    </body>
+</html>
